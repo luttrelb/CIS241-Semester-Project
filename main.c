@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <memory.h>
+#include <stdlib.h>
 
 #define MAXCHAR 1000
 
-
-
+struct data
+{
+    double putCallRatio;
+    char date[8];
+    int spyPutVol;
+    int spyCallVol;
+    int spyTotal;
+}
 
 void importData() {
     FILE * fp;
@@ -32,11 +39,6 @@ void importData() {
 
     fclose(fp);
 }
-
-
-
-
-
 
 int main() {
     importData();
