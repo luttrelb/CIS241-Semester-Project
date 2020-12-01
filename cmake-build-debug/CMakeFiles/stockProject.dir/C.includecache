@@ -6,9 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/justi/CLionProjects/stockProject/main.c
+/cygdrive/d/Utility/Programming/repos/CIS241-Semester-Project/main.c
 stdio.h
 -
 memory.h
+-
+stdlib.h
 -
 

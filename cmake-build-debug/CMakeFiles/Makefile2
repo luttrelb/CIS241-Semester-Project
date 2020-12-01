@@ -64,10 +64,10 @@ RM = /cygdrive/c/Users/justi/AppData/Local/JetBrains/CLion2020.2/cygwin_cmake/bi
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/justi/CLionProjects/stockProject
+CMAKE_SOURCE_DIR = /cygdrive/d/Utility/Programming/repos/CIS241-Semester-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/justi/CLionProjects/stockProject/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/d/Utility/Programming/repos/CIS241-Semester-Project/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -94,14 +94,14 @@ clean: CMakeFiles/stockProject.dir/clean
 CMakeFiles/stockProject.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stockProject.dir/build.make CMakeFiles/stockProject.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stockProject.dir/build.make CMakeFiles/stockProject.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/justi/CLionProjects/stockProject/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target stockProject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/d/Utility/Programming/repos/CIS241-Semester-Project/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target stockProject"
 .PHONY : CMakeFiles/stockProject.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/stockProject.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/justi/CLionProjects/stockProject/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Utility/Programming/repos/CIS241-Semester-Project/cmake-build-debug/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/stockProject.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/justi/CLionProjects/stockProject/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Utility/Programming/repos/CIS241-Semester-Project/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/stockProject.dir/rule
 
 # Convenience name for target.
