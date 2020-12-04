@@ -23,6 +23,7 @@ void nextLine() {
     fgets(str, MAXCHAR, fp);
 }
 
+<<<<<<< HEAD
 void getRangeByDate(char* date) {
 
     int counter = 0;
@@ -36,6 +37,54 @@ void getRangeByDate(char* date) {
 
 void importData() {
     char *filename = "..\\SPY241Project.txt";
+=======
+// void switchCase() {
+
+//     char* filename = "SPY241Project.txt";
+//     int i = 0;
+//     const char* delim = ",";
+
+
+
+//     fp = fopen(filename, "r");
+
+//     if(fp == NULL) {
+//         printf("Could not find file %s", filename);
+//         return;
+//     }
+//     char *endPtr;
+//     char* ptr = strtok(str, delim);
+//     char scanDate;
+//     int switchcase=0;
+//     printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
+//                 "Press 1 For SPY Put/Call Ratio Local Minimum\n"
+//                 "Press 2 for SPY Put/Call Ratio Local Maximum\n"
+//                 "");
+//     scanf("%d", &switchcase);
+//     while (switchcase != 4){
+
+//        switch (switchcase) {
+
+//             case 0:
+//                 printf("Please Select Year Between 2010-2019 In The Form x/xx/xxxx \n");
+//                 scanf("%c",&scanDate);
+//                 printf("%c"scanDate);
+            
+//             // case 1:
+
+//             // case 2:
+
+//             // case 3:
+
+//             // case 4:
+//         }
+
+//     }
+// }
+
+void importData() {
+    char* filename = "..\\SPY241Project.txt";
+>>>>>>> 402d05ab3060c5f592845d511f14f52cd883cc50
     int i = 0;
     const char *delim = ",";
 
@@ -91,6 +140,7 @@ void importData() {
         }
     }
 
+<<<<<<< HEAD
     int k;
     fclose(fp);
     double localmax = 0;
@@ -132,6 +182,21 @@ void printData(int start, int end, struct data arr[]) {
         printf("\tPuts: %d\n", arr[j].spyPutVol);
         printf("\tCalls: %d\n", arr[j].spyCallVol);
         printf("\tTotal: %d\n\n", arr[j].spyTotal);
+=======
+
+    // For debugging purposes. print out each struct in the array to check for correct values
+    int j = 0;
+
+    printf("~~~~~~~~~~~~~~~~~~~~\n");
+    while (j < 10) {
+
+        printf("Array Item %d: \n", j);
+        printf("\tDate: %s\n", dataArray[j].date);
+        printf("\tRatio: %.2f\n", dataArray[j].putCallRatio);
+        printf("\tPuts: %d\n", dataArray[j].spyPutVol);
+        printf("\tCalls: %d\n", dataArray[j].spyCallVol);
+        printf("\tTotal: %d\n\n", dataArray[j].spyTotal);
+>>>>>>> 402d05ab3060c5f592845d511f14f52cd883cc50
 
 
         j++;
@@ -140,8 +205,29 @@ void printData(int start, int end, struct data arr[]) {
 
 int main() {
     importData();
+<<<<<<< HEAD
     getRangeByDate("15");
     //printData(0, 200, tempArr);
+=======
+    char scanDate;
+    int switchcase=0;
+    printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
+                "Press 1 For SPY Put/Call Ratio Local Minimum\n"
+                "Press 2 for SPY Put/Call Ratio Local Maximum\n"
+                "");
+    scanf("%d", &switchcase);
+	while (switchcase != 4){
+>>>>>>> 402d05ab3060c5f592845d511f14f52cd883cc50
 
+       switch (switchcase) {
+
+            case 0:
+                printf("Please Select Year Between 2010-2019 In The Form x/xx/xxxx \n");
+                scanf("%c",&scanDate);
+                printf("%c", scanDate);
+            	
+        }
+
+    }
     return 0;
 }
