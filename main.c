@@ -87,7 +87,7 @@ void getRangeByDate(char *date) {
 
 
 void importData() {
-    char *filename = "SPY241Project.txt";
+    char *filename = "..\\SPY241Project.txt";
     int i = 0;
     const char *delim = ",";
 
@@ -145,24 +145,6 @@ nextLine();
 
     int k;
     fclose(fp);
-    double localmax = 0;
-    double localmin = 0;
-    localmin = dataArray[0].putCallRatio;
-    localmax = dataArray[0].putCallRatio;
-    for (k = 0; k < 2330; k++) {
-        if (dataArray[k].putCallRatio < localmin) {
-            localmin = dataArray[k].putCallRatio;
-            printf("New local min and date: %.2f, %s\n", localmin, dataArray[k].date);
-        }
-        if (dataArray[k].putCallRatio > localmax) {
-            localmax = dataArray[k].putCallRatio;
-            printf("New local max and date: %.2f, %s\n", localmax, dataArray[k].date);
-        }
-
-
-   }
-    printf("overall local max: %f\n", localmax);
-    printf("overall local min: %f", localmin);
 }
 
 
@@ -185,9 +167,8 @@ void printData(int start, int end, struct data arr[]) {
 }
 
 int main() {
-    importData();   
-    getRangeByDate("18");
-    printData(0, 50, tempArr);
+    importData();
+
     char scanDate[3];
     int switchcase = 0;
     printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
@@ -207,7 +188,10 @@ int main() {
 		        printData(0, 20, tempArr);
                 break;
 	        case 1:
-		        
+		        printf("Please Select a year between 2010-2019\n(yy) ");
+		        scanf(" %s", scanDate);
+		        getRangeByDate(scanDate);
+		        getInfoOnYear(scanDate);
                 
             case 2:
                 exit(0);
