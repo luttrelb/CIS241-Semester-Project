@@ -6,7 +6,7 @@
 
 char str[MAXCHAR];
 FILE * fp;
-
+int tempArrCounter = 0;
 
 struct data {
     double putCallRatio;
@@ -24,6 +24,55 @@ void nextLine() {
     fgets(str, MAXCHAR, fp);
 }
 
+double getInfoOnYear(char* year) {
+    int maxPut, maxCall,
+            minPut = tempArr[0].spyPutVol,
+            minCall = tempArr[0].spyCallVol;
+
+
+    struct data maxPutD, minPutD, maxCallD, minCallD;
+
+    int maxTotal, minTotal;
+    int dateHighestTotal;
+
+    double largestGrowthDiff;
+
+    int count = 0;
+    while(count < tempArrCounter) {
+
+        if (maxPut < tempArr[count].spyPutVol) {
+            maxPut = tempArr[count].spyPutVol;
+            maxPutD = tempArr[count];
+        }
+
+        if (minPut > tempArr[count].spyPutVol) {
+            minPut = tempArr[count].spyPutVol;
+            minPutD = tempArr[count];
+        }
+
+        if (maxCall < tempArr[count].spyCallVol) {
+            maxCall = tempArr[count].spyCallVol;
+            maxCallD = tempArr[count];
+        }
+
+        if (minCall > tempArr[count].spyCallVol) {
+            minCall = tempArr[count].spyCallVol;
+            minCallD = tempArr[count];
+        }
+
+        count++;
+    }
+
+    printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    printf("\nShowing statistics for year: 20%s\n", year);
+    printf("\tThe highest put total was in year %s and reached a total of %d\n", maxPutD.date, maxPutD.spyPutVol);
+    printf("\tThe lowest put total was in year %s and reached a total of %d\n", minPutD.date, minPutD.spyPutVol);
+
+    printf("\tThe highest call total was in year %s and reached a total of %d\n", maxCallD.date, maxCallD.spyCallVol);
+    printf("\tThe lowest call total was in year %s and reached a total of %d\n", minCallD.date, minCallD.spyCallVol);
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+}
+
 void getRangeByDate(char *date) {
 
     int counter = 0;
@@ -33,6 +82,7 @@ void getRangeByDate(char *date) {
             counter++;
         }
     }
+    tempArrCounter = counter;
 }
 
 
@@ -165,3 +215,4 @@ int main() {
     }
     return 0;
 }
+
