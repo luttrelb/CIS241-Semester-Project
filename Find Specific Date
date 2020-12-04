@@ -1,0 +1,15 @@
+void findDate(char *date){
+    	int i=0;
+    	while(i<2331){
+    		if(strcmp(date, dataArray[i].date) == 0){
+    			printf("Array Item %d: \n", i);
+        		printf("\tDate: %s\n", dataArray[i].date);
+        		printf("\tRatio: %.2f\n", dataArray[i].putCallRatio);
+        		printf("\tPuts: %d\n", dataArray[i].spyPutVol);
+        		printf("\tCalls: %d\n", dataArray[i].spyCallVol);
+        		printf("\tTotal: %d\n\n", dataArray[i].spyTotal);
+        		break;
+    		}
+    		i++;
+    	}
+}
