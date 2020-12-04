@@ -7,6 +7,7 @@
 char str[MAXCHAR];
 FILE * fp;
 
+void printImportData();
 
 struct data
 {
@@ -93,6 +94,8 @@ void importData() {
         }
     }
     fclose(fp);
+
+//    printImportData();
 }
 
 void printImportData() {
