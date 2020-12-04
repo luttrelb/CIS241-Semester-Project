@@ -27,8 +27,52 @@ int nextLine() {
     return 1;
 }
 
+// void switchCase() {
+
+//     char* filename = "SPY241Project.txt";
+//     int i = 0;
+//     const char* delim = ",";
+
+
+
+//     fp = fopen(filename, "r");
+
+//     if(fp == NULL) {
+//         printf("Could not find file %s", filename);
+//         return;
+//     }
+//     char *endPtr;
+//     char* ptr = strtok(str, delim);
+//     char scanDate;
+//     int switchcase=0;
+//     printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
+//                 "Press 1 For SPY Put/Call Ratio Local Minimum\n"
+//                 "Press 2 for SPY Put/Call Ratio Local Maximum\n"
+//                 "");
+//     scanf("%d", &switchcase);
+//     while (switchcase != 4){
+
+//        switch (switchcase) {
+
+//             case 0:
+//                 printf("Please Select Year Between 2010-2019 In The Form x/xx/xxxx \n");
+//                 scanf("%c",&scanDate);
+//                 printf("%c"scanDate);
+            
+//             // case 1:
+
+//             // case 2:
+
+//             // case 3:
+
+//             // case 4:
+//         }
+
+//     }
+// }
+
 void importData() {
-    char* filename = "..\\SPY241Project.txt";
+    char* filename = "SPY241Project.txt";
     int i = 0;
     const char* delim = ",";
 
@@ -110,28 +154,29 @@ void printImportData() {
         printf("\tTotal: %d\n\n", dataArray[j].spyTotal);
 
         j++;
-        int k;
-    fclose(fp);
-    double localmax = 0;
-    double localmin = 0;
-    localmin = dataArray[0].putCallRatio ;
-    localmax = dataArray[0].putCallRatio ;
-    for(k=0;k<2330;k++){
-        if (dataArray[k].putCallRatio < localmin){
-            localmin =dataArray[k].putCallRatio ;
-        }
-        if (dataArray[k].putCallRatio > localmax){
-            localmax =dataArray[k].putCallRatio ;
-        }
-
-
-    }
-    printf("overall local max: %f\n",localmax);
-    printf("overall local min: %f",localmin);
     }
 }
+
 int main() {
     importData();
+    char scanDate;
+    int switchcase=0;
+    printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
+                "Press 1 For SPY Put/Call Ratio Local Minimum\n"
+                "Press 2 for SPY Put/Call Ratio Local Maximum\n"
+                "");
+    scanf("%d", &switchcase);
+	while (switchcase != 4){
 
+       switch (switchcase) {
+
+            case 0:
+                printf("Please Select Year Between 2010-2019 In The Form x/xx/xxxx \n");
+                scanf("%c",&scanDate);
+                printf("%c", scanDate);
+            	
+        }
+
+    }
     return 0;
 }
