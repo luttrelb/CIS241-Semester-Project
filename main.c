@@ -5,13 +5,10 @@
 #define MAXCHAR 1000
 
 char str[MAXCHAR];
-FILE * fp;
+FILE *fp;
 
 
-
-
-struct data
-{
+struct data {
     double putCallRatio;
     char date[9];
     int spyPutVol;
@@ -20,54 +17,54 @@ struct data
 };
 
 struct data dataArray[2331];
+struct data tempArr[2331];
 
 void nextLine() {
     fgets(str, MAXCHAR, fp);
 }
 
+void getRangeByDate(char* date) {
+
+    int counter = 0;
+    for (int i = 0; i < 2330; i++) {
+        if (strstr(dataArray[i].date + 4, date) != NULL) {
+            tempArr[counter] = dataArray[i];
+            counter++;
+        }
+    }
+}
+
 void importData() {
-    char* filename = "SPY241Project.txt";
+    char *filename = "..\\SPY241Project.txt";
     int i = 0;
-    const char* delim = ",";
+    const char *delim = ",";
 
 
     fp = fopen(filename, "r");
 
-    if(fp == NULL) {
+    if (fp == NULL) {
         printf("Could not find file %s", filename);
         return;
     }
 
-    // find total lines in txt file
-//    int count=0;
-//    while(fgets(str,MAXCHAR,fp) != NULL) {
-//        count++;
-//    }
-//    printf("\nTotal Lines: %d", count);
-//
-//    return; 2331
-nextLine();
-nextLine();
+    nextLine();
+    nextLine();
+
     int arrayPos = 0;
 
-    char* ptr = strtok(str, delim);
+    char *ptr = strtok(str, delim);
     char *endPtr;
 
     while (ptr != NULL) {
 
         switch (i) {
             case 0:
-//
-                strcpy(dataArray[arrayPos].date,ptr);
+                strcpy(dataArray[arrayPos].date, ptr);
 
-                // for testing
-                printf("Adding %s to date of struct in array pos %d\n", ptr, arrayPos);
                 break;
             case 1:
                 dataArray[arrayPos].putCallRatio = strtod(ptr, &endPtr);
 
-                // for testing
-                printf("Adding %s to ratio of struct in array pos %d\n\n", ptr, arrayPos);
                 break;
             case 2:
                 dataArray[arrayPos].spyPutVol = atoi(ptr);
@@ -83,59 +80,68 @@ nextLine();
         }
 
         // reset ptr for each element in the line given
-        if(i == 4) {
+        if (i == 4) {
             nextLine();
             arrayPos++;
             ptr = strtok(str, delim);
             i = 0;
-        }
-        else {
+        } else {
             i++;
             ptr = strtok(NULL, delim);
         }
     }
 
-
-    // For debugging purposes. print out each struct in the array to check for correct values
-    int j = 0;
-
-    printf("~~~~~~~~~~~~~~~~~~~~\n");
-    while (j < 10) {
-
-        printf("Array Item %d: \n", j);
-        printf("\tDate: %s\n", dataArray[j].date);
-        printf("\tRatio: %.2f\n", dataArray[j].putCallRatio);
-        printf("\tPuts: %d\n", dataArray[j].spyPutVol);
-        printf("\tCalls: %d\n", dataArray[j].spyCallVol);
-        printf("\tTotal: %d\n\n", dataArray[j].spyTotal);
-
-
-        j++;
-    }
     int k;
     fclose(fp);
     double localmax = 0;
     double localmin = 0;
-    localmin = dataArray[0].putCallRatio ;
-    localmax = dataArray[0].putCallRatio ;
-    for(k=0;k<2330;k++){
-        if (dataArray[k].putCallRatio < localmin){
-            localmin =dataArray[k].putCallRatio ;
-            printf("New local min and date: %f, %s\n",localmin, dataArray[k].date);
+    localmin = dataArray[0].putCallRatio;
+    localmax = dataArray[0].putCallRatio;
+    for (k = 0; k < 2330; k++) {
+        if (dataArray[k].putCallRatio < localmin) {
+            localmin = dataArray[k].putCallRatio;
+            printf("New local min and date: %.2f, %s\n", localmin, dataArray[k].date);
         }
-        if (dataArray[k].putCallRatio > localmax){
-            localmax =dataArray[k].putCallRatio ;
-            printf("New local max: %f, %s\n",localmax, dataArray[k].date);
+        if (dataArray[k].putCallRatio > localmax) {
+            localmax = dataArray[k].putCallRatio;
+            printf("New local max and date: %.2f, %s\n", localmax, dataArray[k].date);
         }
 
 
     }
-    printf("overall local max: %f\n",localmax);
-    printf("overall local min: %f",localmin);
+    printf("overall local max: %f\n", localmax);
+    printf("overall local min: %f", localmin);
+}
+
+double min[2300];
+double max[2300];
+
+void findMinMax() {
+
+}
+
+void printData(int start, int end, struct data arr[]) {
+    int j = start;
+
+    printf("~~~~~~~~~~~~~~~~~~~~\n");
+    while (j <= end) {
+
+        printf("Array Item %d: \n", j);
+        printf("\tDate: %s\n", arr[j].date);
+        printf("\tRatio: %.2f\n", arr[j].putCallRatio);
+        printf("\tPuts: %d\n", arr[j].spyPutVol);
+        printf("\tCalls: %d\n", arr[j].spyCallVol);
+        printf("\tTotal: %d\n\n", arr[j].spyTotal);
+
+
+        j++;
+    }
 }
 
 int main() {
     importData();
+    getRangeByDate("15");
+    //printData(0, 200, tempArr);
 
     return 0;
 }
