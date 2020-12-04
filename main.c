@@ -40,16 +40,6 @@ void importData() {
         return;
     }
 
-    // find total lines in txt file
-//    int count=0;
-//    while(fgets(str,MAXCHAR,fp) != NULL) {
-//        count++;
-//    }
-//    printf("\nTotal Lines: %d", count);
-//
-//    return; 2331
-
-
     nextLine();
     nextLine();
 
@@ -62,11 +52,7 @@ void importData() {
         switch (i) {
              //add date
             case 0:
-
                strcpy(dataArray[arrayPos].date, ptr);
-                //dataArray[arrayPos].date = ptr;
-
-                printf("\nDate: %s at arrayPos: %d", dataArray[arrayPos].date, arrayPos);
 
                 i++;
                 ptr = strtok(NULL, delim);
@@ -106,16 +92,13 @@ void importData() {
                 printf("Something went wrong, arrayCount = %d, i = %d", arrayPos, i);
         }
     }
+    fclose(fp);
+}
 
-
-
-
-
-    // For debugging purposes. print out each struct in the array to check for correct values
+void printImportData() {
+    printf("\n~~~~~~~~~~~~~~~~~~~~~\n");
     int j = 0;
-    printf("\n~~~~~~~~~~~~~~~~~~~~\n");
     while (j < 2330) {
-
         printf("Array Item %d: \n", j);
         printf("\tDate: %s\n", dataArray[j].date);
         printf("\tRatio: %.2f\n", dataArray[j].putCallRatio);
@@ -123,15 +106,9 @@ void importData() {
         printf("\tCalls: %d\n", dataArray[j].spyCallVol);
         printf("\tTotal: %d\n\n", dataArray[j].spyTotal);
 
-
         j++;
     }
-    fclose(fp);
-
-    printf("Showing Date for 4th element: %s", dataArray[3].date);
-    printf("verify with ratio: %.2f", dataArray[3].putCallRatio);
 }
-
 int main() {
     importData();
 
