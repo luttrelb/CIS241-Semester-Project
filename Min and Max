@@ -1,0 +1,74 @@
+struct min
+{
+	char* dt;
+	double ratio;
+};
+struct max
+{
+	char* dt;
+	double ratio;
+};
+
+struct min minArray[2331];
+struct max maxArray[2331];
+
+void localMax(struct data arr[]){
+	int count = 0;
+	double m = 1.2;
+	double last = arr[0].putCallRatio;
+	for(int i =1; i<2331;i++){
+		double current = arr[i].putCallRatio;
+		if(current>last){
+			last = current;
+			i++;
+		}
+		else{
+			if(last>m){
+				maxArray[count].ratio = last;
+				maxArray[count].dt = arr[i-1].date;
+				last = current;
+				count++;
+				i++;
+			}
+			else{
+				last = current;
+				i++;
+			}
+		}
+	}
+	int j;
+	for(j=0;j<count;j++){
+		printf("Date of Local Max: %s\tRatio: %.2f\n", maxArray[j].dt, maxArray[j].ratio);
+	}
+	printf("Count: %i\n", j);
+}
+void localMin(struct data arr[]){
+	int count = 0;
+	double m = 0.7;
+	double last = arr[0].putCallRatio;
+	for(int i =1; i<2331;i++){
+		double current = arr[i].putCallRatio;
+		if(current<last){
+			last = current;
+			
+		}
+		else{
+			if(last<m){
+				minArray[count].ratio = last;
+				minArray[count].dt = arr[i-1].date;
+				last = current;
+				count++;
+				
+			}
+			else{
+				last = current;
+				
+			}
+		}
+	}
+	int j;
+	for(j=0;j<count;j++){
+		printf("Date of Local Min: %s\tRatio: %.2f\n", minArray[j].dt, maxArray[j].ratio);
+	}
+	printf("Count: %i\n", j);
+}
