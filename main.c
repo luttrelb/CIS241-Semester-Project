@@ -37,7 +37,7 @@ void getRangeByDate(char *date) {
 
 
 void importData() {
-    char *filename = "..\\SPY241Project.txt";
+    char *filename = "SPY241Project.txt";
     int i = 0;
     const char *delim = ",";
 
@@ -138,10 +138,10 @@ int main() {
     importData();   
     getRangeByDate("18");
     printData(0, 50, tempArr);
-    char scanDate;
+    char scanDate[3];
     int switchcase = 0;
     printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
-                "Press 1 For SPY Put/Call Ratio Local Minimum\n"
+                "Press 1 For General Statistics For Each Year \n"
                 "Press 2 for SPY Put/Call Ratio Local Maximum\n"
                 "");
     scanf("%d", &switchcase);
@@ -150,12 +150,18 @@ int main() {
        switch (switchcase) {
 
             case 0:
-                printf("Please Select Year Between 2010-2019 In The Form x/xx/xxxx \n");
-                scanf("%c", &scanDate);
-                printf("%c", scanDate);
-           
-       }
-
+                printf("Please Select Year Between 2010-2019 In The Form xx \n");
+                scanf(" %s", scanDate);
+		        char *ptr = scanDate;
+                getRangeByDate(ptr);
+		        printData(0, 20, tempArr);
+                break;
+	        case 1:
+		        
+                
+            case 2:
+                exit(0);
+	    }
     }
     return 0;
 }
