@@ -110,6 +110,24 @@ void printImportData() {
         printf("\tTotal: %d\n\n", dataArray[j].spyTotal);
 
         j++;
+        int k;
+    fclose(fp);
+    double localmax = 0;
+    double localmin = 0;
+    localmin = dataArray[0].putCallRatio ;
+    localmax = dataArray[0].putCallRatio ;
+    for(k=0;k<2330;k++){
+        if (dataArray[k].putCallRatio < localmin){
+            localmin =dataArray[k].putCallRatio ;
+        }
+        if (dataArray[k].putCallRatio > localmax){
+            localmax =dataArray[k].putCallRatio ;
+        }
+
+
+    }
+    printf("overall local max: %f\n",localmax);
+    printf("overall local min: %f",localmin);
     }
 }
 int main() {
