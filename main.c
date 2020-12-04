@@ -7,7 +7,8 @@
 char str[MAXCHAR];
 FILE * fp;
 
-void printImportData();
+
+
 
 struct data
 {
@@ -18,13 +19,10 @@ struct data
     int spyTotal;
 };
 
-struct data dataArray[2350];
+struct data dataArray[2331];
 
-int nextLine() {
-
-    if (fgets(str, MAXCHAR, fp) == NULL)
-        return 0;
-    return 1;
+void nextLine() {
+    fgets(str, MAXCHAR, fp);
 }
 
 // void switchCase() {
@@ -72,10 +70,9 @@ int nextLine() {
 // }
 
 void importData() {
-    char* filename = "SPY241Project.txt";
+    char* filename = "..\\SPY241Project.txt";
     int i = 0;
     const char* delim = ",";
-
 
 
     fp = fopen(filename, "r");
@@ -85,73 +82,77 @@ void importData() {
         return;
     }
 
-    nextLine();
-    nextLine();
-
+    // find total lines in txt file
+//    int count=0;
+//    while(fgets(str,MAXCHAR,fp) != NULL) {
+//        count++;
+//    }
+//    printf("\nTotal Lines: %d", count);
+//
+//    return; 2331
+nextLine();
+nextLine();
     int arrayPos = 0;
-    char *endPtr;
-    char* ptr = strtok(str, delim);
 
-    while (arrayPos != 2330 && ptr != NULL) {
+    char* ptr = strtok(str, delim);
+    char *endPtr;
+
+    while (ptr != NULL) {
 
         switch (i) {
-             //add date
             case 0:
-               strcpy(dataArray[arrayPos].date, ptr);
+//
+                strcpy(dataArray[arrayPos].date,ptr);
 
-                i++;
-                ptr = strtok(NULL, delim);
+                // for testing
+                printf("Adding %s to date of struct in array pos %d\n", ptr, arrayPos);
                 break;
             case 1:
                 dataArray[arrayPos].putCallRatio = strtod(ptr, &endPtr);
 
-                i++;
-                ptr = strtok(NULL, delim);
+                // for testing
+                printf("Adding %s to ratio of struct in array pos %d\n\n", ptr, arrayPos);
                 break;
             case 2:
                 dataArray[arrayPos].spyPutVol = atoi(ptr);
-
-                i++;
-                ptr = strtok(NULL, delim);
                 break;
             case 3:
                 dataArray[arrayPos].spyCallVol = atoi(ptr);
-
-                i++;
-                ptr = strtok(NULL, delim);
                 break;
             case 4:
                 dataArray[arrayPos].spyTotal = atoi(ptr);
-
-                arrayPos++;
-
-                if (ptr != NULL)
-                    if (nextLine() == 0)
-                        ptr = NULL;
-                    else
-                        ptr = strtok(str, delim);
-                    //ptr = (nextLine() == 0) ? NULL : strtok(str, delim);
-                i = 0;
                 break;
             default:
                 printf("Something went wrong, arrayCount = %d, i = %d", arrayPos, i);
         }
+
+        // reset ptr for each element in the line given
+        if(i == 4) {
+            nextLine();
+            arrayPos++;
+            ptr = strtok(str, delim);
+            i = 0;
+        }
+        else {
+            i++;
+            ptr = strtok(NULL, delim);
+        }
     }
-    fclose(fp);
 
-//    printImportData();
-}
 
-void printImportData() {
-    printf("\n~~~~~~~~~~~~~~~~~~~~~\n");
+    // For debugging purposes. print out each struct in the array to check for correct values
     int j = 0;
-    while (j < 2330) {
+
+    printf("~~~~~~~~~~~~~~~~~~~~\n");
+    while (j < 10) {
+
         printf("Array Item %d: \n", j);
         printf("\tDate: %s\n", dataArray[j].date);
         printf("\tRatio: %.2f\n", dataArray[j].putCallRatio);
         printf("\tPuts: %d\n", dataArray[j].spyPutVol);
         printf("\tCalls: %d\n", dataArray[j].spyCallVol);
         printf("\tTotal: %d\n\n", dataArray[j].spyTotal);
+
 
         j++;
     }
