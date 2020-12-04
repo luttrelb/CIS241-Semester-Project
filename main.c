@@ -5,7 +5,7 @@
 #define MAXCHAR 1000
 
 char str[MAXCHAR];
-FILE *fp;
+FILE * fp;
 
 
 struct data {
@@ -18,6 +18,7 @@ struct data {
 
 struct data dataArray[2331];
 struct data tempArr[2331];
+
 
 void nextLine() {
     fgets(str, MAXCHAR, fp);
@@ -48,8 +49,8 @@ void importData() {
         return;
     }
 
-    nextLine();
-    nextLine();
+nextLine();
+nextLine();
 
     int arrayPos = 0;
 
@@ -109,7 +110,7 @@ void importData() {
         }
 
 
-    }
+   }
     printf("overall local max: %f\n", localmax);
     printf("overall local min: %f", localmin);
 }
@@ -134,26 +135,26 @@ void printData(int start, int end, struct data arr[]) {
 }
 
 int main() {
-    importData();
+    importData();   
     getRangeByDate("18");
     printData(0, 50, tempArr);
     char scanDate;
     int switchcase = 0;
     printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
-           "Press 1 For SPY Put/Call Ratio Local Minimum\n"
-           "Press 2 for SPY Put/Call Ratio Local Maximum\n"
-           "");
+                "Press 1 For SPY Put/Call Ratio Local Minimum\n"
+                "Press 2 for SPY Put/Call Ratio Local Maximum\n"
+                "");
     scanf("%d", &switchcase);
-    while (switchcase != 4) {
+	while (switchcase != 4) {
 
-        switch (switchcase) {
+       switch (switchcase) {
 
             case 0:
                 printf("Please Select Year Between 2010-2019 In The Form x/xx/xxxx \n");
                 scanf("%c", &scanDate);
                 printf("%c", scanDate);
-
-        }
+           
+       }
 
     }
     return 0;
