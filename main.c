@@ -207,6 +207,8 @@ int main() {
 		        char *ptr = scanDate;
                 getRangeByDate(ptr);
 		        printData(0, 20, tempArr);
+                printf("System Exit");
+                switchcase = 4;
                 break;
 	        case 1:
 		        getRangeByDate("10");
@@ -229,6 +231,7 @@ int main() {
             	getInfoOnYear("18");
                 getRangeByDate("19");
             	getInfoOnYear("19");
+                printf("System Exit");
 		        switchcase = 4;
 		        break;
             case 2:
@@ -236,6 +239,8 @@ int main() {
                 scanf(" %s", scanDate2);
 		        char *ptr2 = scanDate2;
                 findDate(ptr2);
+                printf("System Exit");
+                switchcase = 4;
             case 3:
                 exit(0);
 	    }
