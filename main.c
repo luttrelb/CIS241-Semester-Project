@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * @authors Justin Jahlas, 
+ * @authors Justin Jahlas, Brennan Luttrell 
  */
 
 #define MAXCHAR 1000
@@ -12,12 +12,15 @@ char str[MAXCHAR];
 FILE * fp;
 int tempArrCounter = 0;
 
+/**
+ * Structure that holds elements to be used in a structure array
+ */
 struct data {
-    double putCallRatio;
-    char date[9];
-    int spyPutVol;
-    int spyCallVol;
-    int spyTotal;
+    double putCallRatio; //Put Call Ratio is the number of puts over the number of calls
+    char date[9]; //date in xx/xx/xx
+    int spyPutVol; //SPY put volume for a specific day
+    int spyCallVol; //SPY call volume for a specific day
+    int spyTotal; // total SPY
 };
 
 
