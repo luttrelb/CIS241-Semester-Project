@@ -123,7 +123,7 @@ void getRangeByDate(char *date) {
  * imports all the file data into structs to be used within the program
  */
 void importData() {
-    char *filename = "..\\SPY241Project.txt";
+    char *filename = "SPY241Project.txt";
     int i = 0;
     const char *delim = ",";
 
@@ -210,7 +210,7 @@ void printData(int start, int end, struct data arr[]) {
 /**
  * fetches the struct info of a given date
  *
- * @param date
+ * @param date last 2 digits of date to grab from file
  */
 void findDate(char *date){
     	int i=0;
@@ -233,12 +233,20 @@ int main() {
     char scanDate[3];
 	char scanDate2[9];
     int switchcase = 0;
+/**
+ * Text Options For User Input.
+ */
     printf("Press 0 to Organize And Display The Statistics By Year \n"
                 "Press 1 For General Info For Each Year \n"
                 "Press 2 To Search For Specific Date \n"
                 "Press 3 to close\n"
                 "");
     scanf("%d", &switchcase);
+/**
+ * Switch statement that acts as the user interface. The user has the options
+ * to select and display statistical information by year, to display generalized
+ * statistical analysis' for each year, and to search for information by date.
+ */
 	while (switchcase != 4) {
 
        switch (switchcase) {
