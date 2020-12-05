@@ -16,6 +16,7 @@ struct data {
     int spyTotal;
 };
 
+
 struct data dataArray[2331];
 struct data tempArr[2331];
 
@@ -73,6 +74,8 @@ double getInfoOnYear(char* year) {
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
+
+
 void getRangeByDate(char *date) {
 
     int counter = 0;
@@ -82,7 +85,7 @@ void getRangeByDate(char *date) {
             counter++;
         }
     }
-    tempArrCounter = counter;
+      tempArrCounter = counter;
 }
 
 
@@ -206,13 +209,14 @@ int main() {
                 getRangeByDate(ptr);
 		        printData(0, 20, tempArr);
                 break;
-	        case 1:
-		        
-                
+	    case 1:
+		break;
             case 2:
                 exit(0);
 	    }
     }
     return 0;
 }
+
+
 
