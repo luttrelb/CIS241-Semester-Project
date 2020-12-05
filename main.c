@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * @authors Justin Jahlas, Brennan Luttrell 
+ * @authors Justin Jahlas, Brennan Luttrell, Enrique Ibarra-Hernandez
  */
 
 #define MAXCHAR 1000
