@@ -34,7 +34,7 @@ double getInfoOnYear(char* year) {
 
     struct data maxPutD, minPutD, maxCallD, minCallD, minRatioD, maxRatioD;
 
-    double maxRatio, minRatio = tempArr[0].putCallRatio;
+    double maxRatio = tempArr[0].putCallRatio, minRatio = tempArr[0].putCallRatio;
     
 
     int count = 0;
@@ -91,6 +91,7 @@ double getInfoOnYear(char* year) {
 
 void getRangeByDate(char *date) {
 
+    tempArrCounter = 0;
     int counter = 0;
     for (int i = 0; i < 2330; i++) {
         if (strstr(dataArray[i].date + 4, date) != NULL) {
@@ -103,7 +104,7 @@ void getRangeByDate(char *date) {
 
 
 void importData() {
-    char *filename = "SPY241Project.txt";
+    char *filename = "..\\SPY241Project.txt";
     int i = 0;
     const char *delim = ",";
 
@@ -170,8 +171,7 @@ void printData(int start, int end, struct data arr[]) {
     printf("~~~~~~~~~~~~~~~~~~~~\n");
     while (j <= end) {
 
-        printf("Array Item %d: \n", j);
-        printf("\tDate: %s\n", arr[j].date);
+        printf("Date: %s\n", arr[j].date);
         printf("\tRatio: %.2f\n", arr[j].putCallRatio);
         printf("\tPuts: %d\n", arr[j].spyPutVol);
         printf("\tCalls: %d\n", arr[j].spyCallVol);
@@ -186,8 +186,7 @@ void findDate(char *date){
     	int i=0;
     	while(i<2331){
     		if(strcmp(date, dataArray[i].date) == 0){
-    			printf("Array Item %d: \n", i);
-        		printf("\tDate: %s\n", dataArray[i].date);
+        		printf("Date: %s\n", dataArray[i].date);
         		printf("\tRatio: %.2f\n", dataArray[i].putCallRatio);
         		printf("\tPuts: %d\n", dataArray[i].spyPutVol);
         		printf("\tCalls: %d\n", dataArray[i].spyCallVol);
@@ -220,7 +219,7 @@ int main() {
 		        char *ptr = scanDate;
                 getRangeByDate(ptr);
 		        printData(0, tempArrCounter-1, tempArr);
-                printf("System Exit");
+                printf("\nSystem Exit");
                 switchcase = 4;
                 break;
 	        case 1:
