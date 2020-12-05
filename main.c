@@ -39,12 +39,15 @@ void nextLine() {
  * @param year string of the last 2 digits of the year
  */
 void getInfoOnYear(char* year) {
-    int maxPut, maxCall,
+    int maxPut = tempArr[0].spyPutVol,
+            maxCall = tempArr[0].spyCallVol,
             minPut = tempArr[0].spyPutVol,
             minCall = tempArr[0].spyCallVol;
 
 
-    struct data maxPutD, minPutD, maxCallD, minCallD, minRatioD, maxRatioD;
+    struct data maxPutD, minPutD,
+            maxCallD, minCallD,
+            minRatioD, maxRatioD;
 
     double maxRatio = tempArr[0].putCallRatio, minRatio = tempArr[0].putCallRatio;
     
@@ -281,7 +284,7 @@ int main() {
             	getInfoOnYear("18");
                 getRangeByDate("19");
             	getInfoOnYear("19");
-                printf("System Exit");
+                printf("\nSystem Exit");
 		        switchcase = 4;
 		        break;
             case 2:
@@ -289,7 +292,7 @@ int main() {
                 scanf(" %s", scanDate2);
 		        char *ptr2 = scanDate2;
                 findDate(ptr2);
-                printf("System Exit");
+                printf("\nSystem Exit");
                 switchcase = 4;
                 break;
             case 3:
