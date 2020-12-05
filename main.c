@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <memory.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define MAXCHAR 1000
 
@@ -30,12 +31,10 @@ double getInfoOnYear(char* year) {
             minCall = tempArr[0].spyCallVol;
 
 
-    struct data maxPutD, minPutD, maxCallD, minCallD;
+    struct data maxPutD, minPutD, maxCallD, minCallD, minRatioD, maxRatioD;
 
-    int maxTotal, minTotal;
-    int dateHighestTotal;
-
-    double largestGrowthDiff;
+    double maxRatio, minRatio = tempArr[0].putCallRatio;
+    
 
     int count = 0;
     while(count < tempArrCounter) {
@@ -60,17 +59,31 @@ double getInfoOnYear(char* year) {
             minCallD = tempArr[count];
         }
 
+        if(minRatio > tempArr[count].putCallRatio) {
+            minRatio = tempArr[count].putCallRatio;
+            minRatioD = tempArr[count];
+        }
+
+        if(maxRatio < tempArr[count].putCallRatio) {
+            maxRatio = tempArr[count].putCallRatio;
+            maxRatioD = tempArr[count];
+        }
+
         count++;
     }
 
     printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\nShowing statistics for year: 20%s\n", year);
-    printf("\tThe highest put total was in year %s and reached a total of %d\n", maxPutD.date, maxPutD.spyPutVol);
-    printf("\tThe lowest put total was in year %s and reached a total of %d\n", minPutD.date, minPutD.spyPutVol);
+    printf("\tThe highest put total was in year %s and reached a total of %d.\n", maxPutD.date, maxPutD.spyPutVol);
+    printf("\tThe lowest put total was in year %s and reached a total of %d.\n", minPutD.date, minPutD.spyPutVol);
 
-    printf("\tThe highest call total was in year %s and reached a total of %d\n", maxCallD.date, maxCallD.spyCallVol);
-    printf("\tThe lowest call total was in year %s and reached a total of %d\n", minCallD.date, minCallD.spyCallVol);
-    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("\tThe highest call total was in year %s and reached a total of %d.\n", maxCallD.date, maxCallD.spyCallVol);
+    printf("\tThe lowest call total was in year %s and reached a total of %d.\n", minCallD.date, minCallD.spyCallVol);
+
+    printf("\n\nThe year began quite %s on %s with a put/call ratio of %.2f.", tempArr[0].putCallRatio < 0.70 ? "bullish" : "bearish", tempArr[0].date, tempArr[0].putCallRatio);
+    printf("\nThe market was most bearish on %s with the highest put/call ratio of the year at %.2f.", maxRatioD.date, maxRatioD.putCallRatio);
+    printf("\nThe market was most bullish on %s with the lowest put/call ratio of the year at %.2f.", minRatioD.date, minRatioD.putCallRatio);
+    printf("\nThe year ended %s, with a put/call ratio of %.2f on %s.", tempArr[tempArrCounter-1].putCallRatio < 0.70 ? "bullish" : "bearish", tempArr[tempArrCounter-1].putCallRatio, tempArr[tempArrCounter-1].date);
 }
 
 void getRangeByDate(char *date) {
@@ -142,10 +155,10 @@ nextLine();
             ptr = strtok(NULL, delim);
         }
     }
-
-    int k;
     fclose(fp);
 }
+
+
 
 
 void printData(int start, int end, struct data arr[]) {
