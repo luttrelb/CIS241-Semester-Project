@@ -45,9 +45,9 @@ void getInfoOnYear(char* year) {
             minCall = tempArr[0].spyCallVol;
 
 
-    struct data maxPutD, minPutD,
-            maxCallD, minCallD,
-            minRatioD, maxRatioD;
+    struct data maxPutD = tempArr[0], minPutD = tempArr[0],
+            maxCallD = tempArr[0], minCallD = tempArr[0],
+            minRatioD = tempArr[0], maxRatioD = tempArr[0];
 
     double maxRatio = tempArr[0].putCallRatio, minRatio = tempArr[0].putCallRatio;
     
