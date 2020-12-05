@@ -23,9 +23,9 @@ struct data {
     int spyTotal; // total SPY
 };
 
+struct data dataArray[2331]; //Holds all data elements for text file
 
-struct data dataArray[2331];
-struct data tempArr[2331];
+struct data tempArr[2331]; //Holds temp data elements used in function calls for main()
 
 /**
  * moves the str pointer to the next line in the file
@@ -90,7 +90,9 @@ void getInfoOnYear(char* year) {
 
         count++;
     }
-
+    /**
+     * Print statements for the statistical breakdown for each year
+     */
     printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\nShowing statistics for year: 20%s\n", year);
     printf("\tThe highest put total was in year %s and reached a total of %d.\n", maxPutD.date, maxPutD.spyPutVol);
