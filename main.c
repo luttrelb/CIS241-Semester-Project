@@ -283,6 +283,7 @@ int main() {
                 findDate(ptr2);
                 printf("System Exit");
                 switchcase = 4;
+                break;
             case 3:
                 exit(0);
 	    }
