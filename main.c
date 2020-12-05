@@ -3,7 +3,10 @@
 #include <stdlib.h>
 
 /**
- * @authors Justin Jahlas, Brennan Luttrell 
+ * @authors Justin Jahlas, Brennan Luttrell, Geo Ibarra, Lucas Devries
+ *
+ * This program reads in the file SPY241Project.txt and imports the data into an array of structs
+ * to be applied for various statistical analysis to be chosen by the user.
  */
 
 #define MAXCHAR 1000
@@ -129,7 +132,7 @@ void getRangeByDate(char *date) {
  * imports all the file data into structs to be used within the program
  */
 void importData() {
-    char *filename = "SPY241Project.txt";
+    char *filename = "..\\SPY241Project.txt";
     int i = 0;
     const char *delim = ",";
 
