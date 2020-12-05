@@ -90,7 +90,7 @@ void getRangeByDate(char *date) {
 
 
 void importData() {
-    char *filename = "..\\SPY241Project.txt";
+    char *filename = "SPY241Project.txt";
     int i = 0;
     const char *delim = ",";
 
@@ -169,14 +169,32 @@ void printData(int start, int end, struct data arr[]) {
     }
 }
 
+void findDate(char *date){
+    	int i=0;
+    	while(i<2331){
+    		if(strcmp(date, dataArray[i].date) == 0){
+    			printf("Array Item %d: \n", i);
+        		printf("\tDate: %s\n", dataArray[i].date);
+        		printf("\tRatio: %.2f\n", dataArray[i].putCallRatio);
+        		printf("\tPuts: %d\n", dataArray[i].spyPutVol);
+        		printf("\tCalls: %d\n", dataArray[i].spyCallVol);
+        		printf("\tTotal: %d\n\n", dataArray[i].spyTotal);
+        		break;
+    		}
+    		i++;
+    	}
+}
+
 int main() {
     importData();
 
     char scanDate[3];
+	char scanDate2[9];
     int switchcase = 0;
-    printf("Press 0 to Organize SPY Put/Call Ratio By Date \n"
+    printf("Press 0 to Organize SPY Put/Call Ratio By Year \n"
                 "Press 1 For General Statistics For Each Year \n"
-                "Press 2 for SPY Put/Call Ratio Local Maximum\n"
+                "Press 2 To Search For Specific Date \n"
+                "Press 3 to close\n"
                 "");
     scanf("%d", &switchcase);
 	while (switchcase != 4) {
@@ -190,9 +208,35 @@ int main() {
                 getRangeByDate(ptr);
 		        printData(0, 20, tempArr);
                 break;
-	    case 1:
-		break;
+	        case 1:
+		        getRangeByDate("10");
+            	getInfoOnYear("10");
+                getRangeByDate("11");
+            	getInfoOnYear("11");
+                getRangeByDate("12");
+            	getInfoOnYear("12");
+                getRangeByDate("13");
+            	getInfoOnYear("13");
+                getRangeByDate("14");
+            	getInfoOnYear("14");
+                getRangeByDate("15");
+		        getInfoOnYear("15");
+                getRangeByDate("16");
+            	getInfoOnYear("16");
+                getRangeByDate("17");
+            	getInfoOnYear("17");
+                getRangeByDate("18");
+            	getInfoOnYear("18");
+                getRangeByDate("19");
+            	getInfoOnYear("19");
+		        switchcase = 4;
+		        break;
             case 2:
+                printf("Please Select Date Between 2010-2019 In The Form xx/xx/xx \n");
+                scanf(" %s", scanDate2);
+		        char *ptr2 = scanDate2;
+                findDate(ptr2);
+            case 3:
                 exit(0);
 	    }
     }
