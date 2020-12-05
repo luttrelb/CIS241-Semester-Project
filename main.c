@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <memory.h>
 #include <stdlib.h>
-#include <math.h>
+
+/**
+ * @authors Justin Jahlas, 
+ */
 
 #define MAXCHAR 1000
 
@@ -21,12 +24,21 @@ struct data {
 struct data dataArray[2331];
 struct data tempArr[2331];
 
-
+/**
+ * moves the str pointer to the next line in the file
+ */
 void nextLine() {
     fgets(str, MAXCHAR, fp);
 }
 
-double getInfoOnYear(char* year) {
+/**
+ * take in the last two digits of a year and prints to
+ * terminal various statistics regarding the years stock
+ * trades.
+ *
+ * @param year string of the last 2 digits of the year
+ */
+void getInfoOnYear(char* year) {
     int maxPut, maxCall,
             minPut = tempArr[0].spyPutVol,
             minCall = tempArr[0].spyCallVol;
@@ -88,7 +100,12 @@ double getInfoOnYear(char* year) {
 }
 
 
-
+/**
+ * Populates the tempArr with all of the structs that contain the year-range
+ * specified
+ *
+ * @param date last 2 digits of date to grab from file
+ */
 void getRangeByDate(char *date) {
 
     tempArrCounter = 0;
@@ -102,7 +119,9 @@ void getRangeByDate(char *date) {
       tempArrCounter = counter;
 }
 
-
+/**
+ * imports all the file data into structs to be used within the program
+ */
 void importData() {
     char *filename = "..\\SPY241Project.txt";
     int i = 0;
@@ -164,7 +183,13 @@ nextLine();
 
 
 
-
+/**
+ * prints out basic info of each struct within the range
+ *
+ * @param start the index to begin reporting from
+ * @param end the last index (inclusive) to end reporting.
+ * @param arr the array of data that should be iterated through
+ */
 void printData(int start, int end, struct data arr[]) {
     int j = start;
 
@@ -182,6 +207,11 @@ void printData(int start, int end, struct data arr[]) {
     }
 }
 
+/**
+ * fetches the struct info of a given date
+ *
+ * @param date
+ */
 void findDate(char *date){
     	int i=0;
     	while(i<2331){
