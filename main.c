@@ -191,8 +191,8 @@ int main() {
     char scanDate[3];
 	char scanDate2[9];
     int switchcase = 0;
-    printf("Press 0 to Organize SPY Put/Call Ratio By Year \n"
-                "Press 1 For General Statistics For Each Year \n"
+    printf("Press 0 to Organize And Display The Statistics By Year \n"
+                "Press 1 For General Info For Each Year \n"
                 "Press 2 To Search For Specific Date \n"
                 "Press 3 to close\n"
                 "");
@@ -206,7 +206,7 @@ int main() {
                 scanf(" %s", scanDate);
 		        char *ptr = scanDate;
                 getRangeByDate(ptr);
-		        printData(0, 20, tempArr);
+		        printData(0, tempArrCounter-1, tempArr);
                 printf("System Exit");
                 switchcase = 4;
                 break;
